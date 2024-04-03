@@ -2,7 +2,7 @@
 
 Technologies: Nest.js, prisma, sqlite, class-validator, jest.js
 
-Task did't specify exactly which technologies must be used, so I chosed out of curiosity a not so common ones. For a real project, I would have chosen the world of java(spring).
+Task did't specify exactly which technologies must be used, so I chosed out of curiosity a not so common ones. For a real project, I presumably would have chosen the world of java(spring).
 
 ## Prerequirements
 
