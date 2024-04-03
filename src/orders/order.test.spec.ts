@@ -2,7 +2,6 @@ require('dotenv').config();
 const request = require('supertest');
 const port = process.env.PORT || 3000;
 const baseURL = `http://localhost:${port}/api`;
-// const baseURL = 'https://homework.solutional.ee/api';
 
 async function resShouldBeOk(res, status = 200) {
   expect(res.statusCode).toBe(status);

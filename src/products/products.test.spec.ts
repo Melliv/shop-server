@@ -3,7 +3,6 @@ require('dotenv').config()
 const request = require('supertest');
 const port = process.env.PORT || 3000
 const baseURL = `http://localhost:${port}/api`;
-// const baseURL = 'https://homework.solutional.ee/api';
 
 describe('GET /products', () => {
   it('should return 200', async () => {
