@@ -1,0 +1,48 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Order {
+  id                 String             @id @default(uuid())
+  status             String             @default("NEW")
+  amount             Amount             @relation(fields: [amount_id], references: [id])
+  amount_id          Int                @default(1)
+  products_on_orders ProductsOnOrders[]
+}
+
+model Product {
+  id                 Int                @id @default(autoincrement())
+  name               String
+  price              String
+  products_on_orders ProductsOnOrders[]
+}
+
+model Amount {
+  id       Int     @id @default(autoincrement())
+  discount String  @default("0.00")
+  paid     String  @default("0.00")
+  returns  String  @default("0.00")
+  total    String  @default("0.00")
+  Order    Order[]
+}
+
+model ProductsOnOrders {
+  id                            String            @id @default(uuid())
+  quantity                      Int               @default(1)
+  order                         Order?             @relation(fields: [order_id], references: [id])
+  order_id                      String?
+  product                       Product           @relation(fields: [product_id], references: [id])
+  product_id                    Int
+  replaced_products_on_order    ProductsOnOrders? @relation("replaced_products_on_order", fields: [replaced_products_on_order_id], references: [id])
+  replaced_products_on_order_id String?
+
+  replaced_products_on_orders ProductsOnOrders[] @relation("replaced_products_on_order")
+}
